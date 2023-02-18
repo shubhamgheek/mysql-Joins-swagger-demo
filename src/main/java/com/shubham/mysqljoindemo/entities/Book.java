@@ -20,18 +20,23 @@ public class Book {
     @Column(name = "author_name")
     private String authorName;
 
-    @ManyToOne
+    @Column(name = "cost")
+    private String cost;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private BookCategory bookCategory;
 
-    public Book(String name, String authorName) {
+    public Book(String name, String authorName, String cost) {
         this.name = name;
         this.authorName = authorName;
+        this.cost = cost;
     }
 
-    public Book(String name, String authorName, Long bookCategoryId) {
+    public Book(String name, String authorName, String cost, BookCategory bookCategory) {
         this.name = name;
         this.authorName = authorName;
-        this.bookCategory = new BookCategory(bookCategoryId);
+        this.cost = cost;
+        this.bookCategory = bookCategory;
     }
 }

@@ -18,7 +18,7 @@ public class BookCategory {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "bookCategory")
+    @OneToMany(mappedBy = "bookCategory", cascade = CascadeType.ALL)
     private Set<Book> books;
 
     public BookCategory(String name) {
@@ -27,5 +27,11 @@ public class BookCategory {
 
     public BookCategory(Long id) {
         this.id = id;
+    }
+
+    public BookCategory(String name, Set<Book> books){
+        this.name = name;
+        this.books = books;
+        this.books.forEach(book -> book.setBookCategory(this));
     }
 }

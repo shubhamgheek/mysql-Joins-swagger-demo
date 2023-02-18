@@ -1,9 +1,7 @@
 package com.shubham.mysqljoindemo.controllers;
 
 import com.shubham.mysqljoindemo.entities.Book;
-import com.shubham.mysqljoindemo.entities.BookCategory;
 import com.shubham.mysqljoindemo.models.CreateBookRequestDTO;
-import com.shubham.mysqljoindemo.models.CreateBookWithCategoryRequestDTO;
 import com.shubham.mysqljoindemo.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,13 +19,6 @@ public class BookController {
     @PostMapping("/create/book")
     public ResponseEntity createBook(@RequestBody CreateBookRequestDTO createBookRequestDTO){
         bookService.createBook(createBookRequestDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
-
-    @PostMapping("/create/book/with-category")
-    public ResponseEntity createBook(@RequestBody CreateBookWithCategoryRequestDTO createBookWithCategoryRequestDTO){
-        bookService.createBookWithCategory(createBookWithCategoryRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
